@@ -1,15 +1,14 @@
 version: '3.7'
 
 services:
-  ts-node-docker:
+  api:
     build:
       context: .
       dockerfile: Dockerfile
       target: base
     volumes:
-      - ./src:/home/node/app/src
-      - ./nodemon.json:/home/node/app/nodemon.json
-    container_name: ts-node-docker
+      - ./:/home/node/app/
+    container_name: api
     expose:
       - '4000'
     ports:
