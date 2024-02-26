@@ -1,15 +1,17 @@
 import request from "supertest";
 import app from "../src/app";
 
-describe("GET /hello", () => {
-    it("should return hello world mensaje in json format", async () => {
+const message = "Hello World!";
+
+describe("GET /hello?message=Hello world!", () => {
+    it("should return request message in json format", async () => {
         return request(app)
-            .get("/hello")
+            .get(`/hello?message=${message}`)
             .expect('Content-Type', /json/)
             .expect(200)
             .then((res) => {
                 expect(res.statusCode).toBe(200);
-                expect(res.body.message).toBe("Hello World");
+                expect(res.body.message).toBe(message);
             })
     });
 });
